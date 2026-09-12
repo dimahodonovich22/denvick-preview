@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DenVick — ontwerpvoorstellen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root{--ink:#121213;--ink2:#1B1B1D;--paper:#F1F1EC;--grey:#8E9299;--line:#2C2C30;--red:#C3282D;--red-l:#E2464C;
+        --sans:"Geist",system-ui,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;--ease:cubic-bezier(.16,.84,.28,1)}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%}
+  .shell{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+  header{padding:clamp(44px,7vw,90px) 0 clamp(28px,4vw,48px)}
+  .mark{font-size:26px;font-weight:700;letter-spacing:-.04em}
+  .mark b{color:var(--red-l)}
+  .lbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin:clamp(30px,5vw,54px) 0 18px}
+  .lbl::before{content:"";width:8px;height:8px;background:var(--red)}
+  h1{font-size:clamp(32px,5vw,58px);font-weight:500;letter-spacing:-.032em;line-height:1.05;max-width:16ch}
+  header p{color:var(--grey);max-width:56ch;margin-top:18px;font-size:16.5px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px);padding-bottom:clamp(50px,7vw,90px)}
+  .v{display:flex;flex-direction:column;background:var(--ink2);border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+  .v:hover{transform:translateY(-5px);box-shadow:inset 0 0 0 1px var(--red)}
+  .v figure{overflow:hidden;aspect-ratio:16/10;background:#000}
+  .v img{height:100%;object-fit:cover;object-position:top center;transition:transform 1s var(--ease)}
+  .v:hover img{transform:scale(1.04)}
+  .v .body{padding:clamp(20px,2.2vw,28px);display:flex;flex-direction:column;gap:10px;flex:1}
+  .v .n{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-l)}
+  .v h2{font-size:clamp(20px,1.9vw,25px);font-weight:500;letter-spacing:-.025em}
+  .v p{color:var(--grey);font-size:14.5px}
+  .v .go{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+  .v .go svg{width:14px;height:14px;stroke:var(--red-l);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s var(--ease)}
+  .v:hover .go svg{transform:translate(4px,-4px)}
+  footer{border-top:1px solid var(--line);padding:22px 0 40px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6A6E74;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="shell">
+  <span class="mark"><b>Den</b>Vick</span>
+  <span class="lbl">Ontwerpvoorstellen — ter beoordeling</span>
+  <h1>Drie richtingen voor de nieuwe website.</h1>
+  <p>Elk voorstel toont dezelfde homepagina in een andere visuele richting. Klik erdoorheen, probeer de knoppen en laat weten welke richting het wordt — die bouwen we daarna uit tot de volledige site.</p>
+</header>
+
+<main class="shell grid">
+  <a class="v" href="v1/">
+    <figure><img src="thumbs/v1.jpg" alt="Voorstel 1 — licht industrieel"></figure>
+    <div class="body">
+      <span class="n">Voorstel 01</span>
+      <h2>Licht industrieel</h2>
+      <p>Strakke hoeken, technische typografie, dienstenkaarten die bij hover een projectfoto tonen.</p>
+      <span class="go">Bekijk voorstel <svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span>
+    </div>
+  </a>
+  <a class="v" href="v2/">
+    <figure><img src="thumbs/v2.jpg" alt="Voorstel 2 — zacht en modern"></figure>
+    <div class="body">
+      <span class="n">Voorstel 02</span>
+      <h2>Zacht &amp; modern</h2>
+      <p>Afgeronde panelen, rustige vlakken, diensten in een accordeon en realisaties die over elkaar schuiven.</p>
+      <span class="go">Bekijk voorstel <svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span>
+    </div>
+  </a>
+  <a class="v" href="v3/">
+    <figure><img src="thumbs/v3.jpg" alt="Voorstel 3 — cinematisch editorial"></figure>
+    <div class="body">
+      <span class="n">Voorstel 03</span>
+      <h2>Cinematisch editorial</h2>
+      <p>Groot beeld, grote typografie en beweging bij het scrollen. Diensten wisselen van foto bij hover.</p>
+      <span class="go">Bekijk voorstel <svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span>
+    </div>
+  </a>
+</main>
+
+<footer class="shell">
+  <span>DenVick BV — Bornem</span>
+  <span>Voorbeeldteksten en -cijfers, nog te bevestigen</span>
+</footer>
+</body>
+</html>
