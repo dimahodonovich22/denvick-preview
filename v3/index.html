@@ -88,6 +88,20 @@
     .hdr.open.solid .hdr-nav{border-top-color:var(--line)}
     .hdr.open .hdr-nav a{padding:11px 0;display:block}
   }
+  @media(max-width:1000px){
+    .hdr-in{gap:12px;padding:14px 0}
+    .wordmark{font-size:21px}
+    .hdr .pill{font-size:13px;padding:5px 5px 5px 15px}
+    .hdr .pill .circ{width:30px;height:30px}
+    .hdr .pill .circ svg{width:12px;height:12px}
+    .burger{width:40px;height:40px}
+  }
+  @media(max-width:400px){
+    .hdr-in{gap:9px}
+    .wordmark{font-size:19px}
+    .hdr .pill{font-size:11.5px;padding:4px 4px 4px 12px}
+    .hdr .pill .circ{width:27px;height:27px}
+  }
 
   /* --- hero --- */
   .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;background:var(--ink);color:var(--white);overflow:hidden;padding:clamp(96px,12vw,140px) 0 clamp(26px,3vw,40px)}
