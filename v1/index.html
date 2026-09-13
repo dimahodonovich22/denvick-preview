@@ -207,6 +207,7 @@
   /* contact */
   .contact{background:var(--bg2);border-top:1px solid var(--line)}
   .contact .cols{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  .contact .cols>*{min-width:0}
   .nap{border-radius:2px;background:var(--ink);color:var(--w);padding:38px}
   .nap h3{font-size:26px;font-weight:600;color:#fff}
   .nap dl{margin-top:26px;display:flex;flex-direction:column;gap:20px}
@@ -222,7 +223,7 @@
   .field{display:flex;flex-direction:column;gap:9px}
   .field.full{grid-column:1/-1}
   .field label{font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .field input,.field select,.field textarea{font-family:var(--body);font-size:15.5px;color:var(--fg);padding:15px 16px;background:var(--panel);border:1px solid var(--line2);border-radius:2px;transition:border-color .2s}
+  .field input,.field select,.field textarea{width:100%;min-width:0;font-family:var(--body);font-size:15.5px;color:var(--fg);padding:15px 16px;background:var(--panel);border:1px solid var(--line2);border-radius:2px;transition:border-color .2s}
   .field input::placeholder,.field textarea::placeholder{color:var(--dim)}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red)}
   .field textarea{min-height:130px;resize:vertical}

@@ -224,6 +224,7 @@
   /* ---------- contact ---------- */
   .contact{background:var(--ink);color:#fff;border-radius:var(--r-panel);padding:clamp(38px,5vw,72px) 0}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .contact-grid>*{min-width:0}
   .contact h2{font-size:clamp(34px,4.4vw,54px);margin:18px 0 16px}
   .contact .lead{color:var(--muted-d)}
   .rows{margin-top:34px;border-top:1px solid var(--line-d)}
@@ -241,7 +242,7 @@
   .field.full{grid-column:1/-1}
   .field label{font-size:13px;font-weight:700;color:var(--text)}
   .field label i{color:var(--red);font-style:normal}
-  .field input,.field select,.field textarea{font:inherit;font-size:15px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#FAFBFC;color:var(--text);transition:border-color .2s,background .2s}
+  .field input,.field select,.field textarea{width:100%;min-width:0;font:inherit;font-size:15px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#FAFBFC;color:var(--text);transition:border-color .2s,background .2s}
   .field input::placeholder,.field textarea::placeholder{color:#A9B0B8}
   .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);background:#fff}
   .field textarea{min-height:118px;resize:vertical}
