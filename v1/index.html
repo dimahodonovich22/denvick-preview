@@ -70,7 +70,9 @@
   .wm .b{color:#14287A}
   .wm--light .b{color:#fff}
   .wm--light .r{color:#E2464C}
-  .logo small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.26em;color:var(--dim);text-transform:uppercase;margin-top:4px}
+  .logo small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:5px}
+  .logo small .c1{color:#D01F27}
+  .logo small .c2{color:#14287A}
   .nav-links{display:flex;gap:30px;list-style:none;padding:0}
   .nav-links a{font-weight:600;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color .2s}
   .nav-links a:hover{color:var(--fg)}
@@ -88,7 +90,7 @@
     .nav{gap:12px;padding:11px 0}
     .logo{min-width:0}
     .wm{font-size:22px}
-    .logo small{font-size:8px;letter-spacing:.18em;margin-top:3px}
+    .logo small{font-size:9px;letter-spacing:.16em;margin-top:4px}
     .nav .btn{flex:none;white-space:nowrap;font-size:12px;padding:10px 13px;letter-spacing:.05em}
     .burger{flex:none;padding:9px 11px;font-size:11px;letter-spacing:.1em}
   }
@@ -109,8 +111,8 @@
   .hero .wrap{position:relative;z-index:1;width:100%;padding-top:96px;padding-bottom:72px}
   .hero .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:14px;letter-spacing:.2em}
   .hero .eyebrow .c1{color:#E2464C}
-  .hero .eyebrow .c2{color:#6B84DD}
-  .hero .eyebrow .sep{color:rgba(255,255,255,.4)}
+  .hero .eyebrow .c2{color:#fff}
+  .hero .eyebrow .sep{color:rgba(255,255,255,.45)}
   .hero .eyebrow::before{content:"";width:34px;height:2px;background:#E24A50}
   .hero h1{font-size:clamp(44px,5.6vw,84px);font-weight:700;max-width:none;margin:26px 0 26px;color:#fff}
   .hero .lead{color:var(--w-muted);font-size:18px;max-width:54ch;margin-bottom:40px}
@@ -265,7 +267,7 @@
     <nav class="nav" id="nav">
       <a class="logo" href="#" aria-label="DenVick — home">
         <span class="wm" aria-hidden="true"><span class="r">D</span><span class="b">en</span><span class="r">V</span><span class="b">ic</span><span class="r">K</span></span>
-        <small>Structurele aannemingen</small>
+        <small><span class="c1">Structurele</span> <span class="c2">aannemingen</span></small>
       </a>
       <ul class="nav-links">
         <li><a href="#diensten">Diensten</a></li>
