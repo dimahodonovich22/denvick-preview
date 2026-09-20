@@ -674,16 +674,31 @@
   /* hero entrance on load */
   requestAnimationFrame(function(){ root.classList.add('ready'); });
 
-  if(!reduce && 'IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.remove('pre'); e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {rootMargin: '0px 0px -10% 0px', threshold: 0.05});
+  /* reveals are computed directly from geometry: no observer quirks, never leaves content hidden */
+  function armReveals(){
+    if(!innerHeight) return false;
     document.querySelectorAll('[data-rv]').forEach(function(el){
-      if(el.closest('.hero')) return;
-      if(el.getBoundingClientRect().top > innerHeight * 0.92){ el.classList.add('pre'); io.observe(el); }
+      if(el.closest('.hero') || el.classList.contains('in') || el.classList.contains('pre')) return;
+      if(el.getBoundingClientRect().top > innerHeight * 0.92) el.classList.add('pre');
     });
+    return true;
+  }
+  function sweepReveals(){
+    if(!innerHeight) return;
+    var list = document.querySelectorAll('[data-rv].pre');
+    for(var i = 0; i < list.length; i++){
+      var r = list[i].getBoundingClientRect();
+      if(r.top < innerHeight * 0.9){   /* already scrolled past counts as seen */
+        list[i].classList.remove('pre');
+        list[i].classList.add('in');
+      }
+    }
+  }
+  if(!reduce){
+    if(!armReveals()){
+      var tries = 0;
+      var retry = setInterval(function(){ if(armReveals() || ++tries > 20) clearInterval(retry); }, 400);
+    }
   }
 
   /* counting numbers in the hero */
@@ -714,21 +729,30 @@
     if(ticking) return;
     ticking = true;
     requestAnimationFrame(function(){
+      ticking = false;
       var y = window.scrollY || 0;
       var max = document.documentElement.scrollHeight - innerHeight;
       if(line) line.style.setProperty('--p', (max > 0 ? (y / max) * 100 : 0).toFixed(2) + '%');
       if(header) header.classList.toggle('scrolled', y > 40);
+      if(!reduce) sweepReveals();
       px.forEach(function(item){
         var r = item.el.getBoundingClientRect();
         var prog = (innerHeight / 2 - (r.top + r.height / 2)) / innerHeight;
         item.el.style.setProperty('--py', (Math.max(-1, Math.min(1, prog)) * item.k).toFixed(1) + 'px');
       });
-      ticking = false;
     });
   }
   addEventListener('scroll', onScroll, {passive: true});
   addEventListener('resize', onScroll, {passive: true});
+  document.addEventListener('visibilitychange', function(){ ticking = false; onScroll(); });
   onScroll();
+
+  /* if frames stall (background tab, throttled renderer) nothing may stay hidden */
+  var safety = setInterval(function(){
+    if(!document.querySelectorAll('[data-rv].pre').length){ clearInterval(safety); return; }
+    ticking = false;
+    onScroll();
+  }, 700);
 
   /* form + mobile menu */
   var form = document.getElementById('offerteForm');
