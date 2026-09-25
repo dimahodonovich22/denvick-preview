@@ -333,6 +333,11 @@
   .foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding:20px 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--w-dim);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
   @media(max-width:840px){footer.site .cols{grid-template-columns:1fr 1fr}}
 
+  .to-top{position:fixed;right:clamp(16px,2vw,28px);bottom:clamp(16px,2vw,28px);z-index:55;width:48px;height:48px;display:grid;place-items:center;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:2px;cursor:pointer;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease),background .2s,border-color .2s}
+  .to-top.show{opacity:1;transform:none;pointer-events:auto}
+  .to-top:hover{background:var(--red);border-color:var(--red)}
+  .to-top svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:600px){.to-top{width:44px;height:44px}}
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);border:1px solid var(--ink2);color:#fff;font-family:var(--mono);font-size:13px;padding:15px 24px;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
   .toast.show{opacity:1}
 </style>
@@ -700,6 +705,7 @@
   </div>
 </footer>
 
+<button class="to-top" id="toTop" type="button" aria-label="Terug naar boven"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6"/><path d="M5 13l7-7 7 7"/></svg></button>
 <div class="toast" id="toast">Prototype — formulier is nog niet gekoppeld.</div>
 
 <script>
@@ -776,12 +782,14 @@
   /* scroll: progress line, header state, gentle parallax */
   var header = document.querySelector('header.site');
   var line = document.getElementById('scrollLine');
+  var toTop = document.getElementById('toTop');
   var px = [];
   if(!reduce){
     [['.hero-bg img', 46], ['.emergency .bgimg img', 34], ['.why-visual img', 30]].forEach(function(pair){
       document.querySelectorAll(pair[0]).forEach(function(el){ px.push({el: el, k: pair[1]}); });
     });
   }
+  function toggleTop(){ if(toTop) toTop.classList.toggle('show', (window.scrollY || 0) > 600); }
   var ticking = false;
   function onScroll(){
     if(ticking) return;
@@ -792,6 +800,7 @@
       var max = document.documentElement.scrollHeight - innerHeight;
       if(line) line.style.setProperty('--p', (max > 0 ? (y / max) * 100 : 0).toFixed(2) + '%');
       if(header) header.classList.toggle('scrolled', y > 40);
+      toggleTop();
       if(!reduce) sweepReveals();
       px.forEach(function(item){
         var r = item.el.getBoundingClientRect();
@@ -800,6 +809,8 @@
       });
     });
   }
+  addEventListener('scroll', toggleTop, {passive: true});
+  toggleTop();
   addEventListener('scroll', onScroll, {passive: true});
   addEventListener('resize', onScroll, {passive: true});
   document.addEventListener('visibilitychange', function(){ ticking = false; onScroll(); });
@@ -815,6 +826,10 @@
   /* seamless marquee: the track is duplicated so translateX(-50%) loops invisibly */
   var mq = document.getElementById('mqTrack');
   if(mq) mq.innerHTML += mq.innerHTML;
+
+  if(toTop) toTop.addEventListener('click', function(){
+    window.scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'});
+  });
 
   /* form + mobile menu */
   var form = document.getElementById('offerteForm');
