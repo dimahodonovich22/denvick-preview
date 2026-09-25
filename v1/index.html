@@ -66,7 +66,7 @@
   @keyframes heroBg{from{opacity:0;transform:scale(1.07)}to{opacity:1;transform:scale(1)}}
 
   /* scroll progress on the sticky header */
-  .scroll-line{position:absolute;left:0;bottom:-1px;height:2px;width:var(--p,0%);background:var(--red);transition:width .08s linear}
+  .scroll-line{position:absolute;left:0;bottom:0;height:2px;width:var(--p,0%);background:var(--red);transition:width .08s linear}
   header.site{transition:box-shadow .3s ease}
   header.site.scrolled{box-shadow:0 8px 28px rgba(20,23,28,.09)}
 
@@ -99,7 +99,9 @@
   @media(max-width:400px){.topbar a.wa{font-size:10px;padding:5px 9px;letter-spacing:.1em}}
 
   /* header */
-  header.site{position:sticky;top:0;z-index:50;background:rgba(244,244,241,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  header.site{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  /* the frosted layer is desktop-only: on iOS a backdrop-filtered sticky header detaches during Safari toolbar transitions */
+  @media(min-width:981px){header.site{background:rgba(244,244,241,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}}
   .nav{display:flex;align-items:center;gap:34px;padding:18px 0;position:relative}
   .logo{text-decoration:none;margin-right:auto;line-height:1}
   .wm{display:inline-flex;align-items:flex-end;white-space:nowrap;font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:800;font-size:26px;line-height:1;letter-spacing:.06em}
