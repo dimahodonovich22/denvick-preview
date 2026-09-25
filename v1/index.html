@@ -166,6 +166,27 @@
   @media(max-width:840px){.trust{grid-template-columns:1fr 1fr;margin-top:56px}}
 
   /* services cards */
+  /* client strip */
+  .clients{background:var(--panel);border-bottom:1px solid var(--line)}
+  .clients .wrap{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:clamp(20px,3vw,44px);padding-top:26px;padding-bottom:26px}
+  .clients-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);line-height:1.7;white-space:nowrap}
+  .clients-label b{display:block;color:var(--fg);font-weight:500}
+  .marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .mq-track{display:flex;align-items:center;width:max-content;animation:mq 42s linear infinite}
+  .marquee:hover .mq-track{animation-play-state:paused}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .mq-item{display:inline-flex;align-items:center;gap:clamp(26px,3vw,42px);padding-right:clamp(26px,3vw,42px);font-family:var(--disp);font-weight:700;font-size:clamp(18px,1.7vw,23px);letter-spacing:.05em;text-transform:uppercase;color:#9BA1A7;white-space:nowrap;transition:color .25s}
+  .mq-item:hover{color:var(--fg)}
+  .mq-item::after{content:"";width:5px;height:5px;background:var(--red);opacity:.55;flex:none}
+  @media(max-width:760px){
+    .clients .wrap{grid-template-columns:1fr;gap:14px}
+    .clients-label{white-space:normal}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .mq-track{animation:none}
+    .marquee{overflow-x:auto}
+  }
+
   .svc-intro{max-width:820px;margin-bottom:64px}
   .svc-intro h2{font-size:clamp(38px,5vw,64px);font-weight:700;margin-top:14px}
   .svc-intro .sub{color:var(--muted);font-size:16.5px;margin-top:22px;max-width:46ch}
@@ -365,6 +386,13 @@
       <div class="hl" style="--d:.84s"><span class="n">VCA</span><p>Gecertificeerde ploegen</p></div>
       <div class="hl" style="--d:.92s"><span class="n">24<em>/7</em></span><p>Spoedinterventies</p></div>
     </div>
+  </div>
+</section>
+
+<section class="clients">
+  <div class="wrap">
+    <p class="clients-label"><b>Zij werken met DenVick</b>Voorbeeldnamen — te vervangen door echte referenties</p>
+    <div class="marquee"><div class="mq-track" id="mqTrack"><span class="mq-item">Bouwgroep Noord</span><span class="mq-item">Infra Partners</span><span class="mq-item">Studiebureau Delta</span><span class="mq-item">Havenbedrijf Zuid</span><span class="mq-item">Industriebouw West</span><span class="mq-item">Vastgoed Alfa</span><span class="mq-item">Logistiek E17</span><span class="mq-item">Gemeente Voorbeeld</span></div></div>
   </div>
 </section>
 
@@ -783,6 +811,10 @@
     ticking = false;
     onScroll();
   }, 700);
+
+  /* seamless marquee: the track is duplicated so translateX(-50%) loops invisibly */
+  var mq = document.getElementById('mqTrack');
+  if(mq) mq.innerHTML += mq.innerHTML;
 
   /* form + mobile menu */
   var form = document.getElementById('offerteForm');
