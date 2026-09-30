@@ -197,13 +197,13 @@
   .svc-card>:not(.svc-bg){position:relative;z-index:1}
   .svc-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
   .svc-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(45%) contrast(1.03);transform:scale(1.001);transition:transform .7s var(--ease,ease),filter .45s ease}
-  .svc-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,18,.74) 0%,rgba(11,14,18,.66) 42%,rgba(11,14,18,.88) 100%)}
-  .svc-card::after{content:"";position:absolute;inset:0;z-index:0;background:rgba(9,11,15,.4);opacity:0;transition:opacity .35s ease;pointer-events:none}
-  .svc-card:hover::after{opacity:1}
-  .svc-card:hover .svc-bg img{transform:scale(1.045);filter:grayscale(0) contrast(1.03)}
+  .svc-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,18,.76) 0%,rgba(11,14,18,.68) 42%,rgba(11,14,18,.9) 100%);transition:opacity .35s ease}
+  .svc-card:hover .svc-bg::after{opacity:.62}
+  .svc-card:hover .svc-bg img{transform:scale(1.045);filter:grayscale(0) brightness(1.07) contrast(1.02)}
   .svc-card:hover{box-shadow:inset 0 0 0 1px rgba(226,70,76,.75)}
   .svc-icon{width:52px;height:52px;border:1px solid rgba(255,255,255,.22);background:rgba(11,14,18,.45);border-radius:2px;display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s}
   .svc-icon svg{width:24px;height:24px;stroke:rgba(255,255,255,.85);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+  .svc-card h3,.svc-card .desc,.svc-more{text-shadow:0 1px 14px rgba(8,10,14,.6)}
   .svc-card h3{font-size:27px;font-weight:600;text-transform:none;letter-spacing:0;margin-top:26px;color:#fff}
   .svc-card .desc{color:rgba(255,255,255,.82);font-size:15.5px;margin-top:10px;max-width:38ch}
   .svc-more{display:inline-flex;align-items:center;gap:10px;margin-top:auto;padding-top:34px;font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .3s}
@@ -216,7 +216,7 @@
   .svc-foot p{color:var(--muted);font-size:16px}
   @media(max-width:1000px){.svc-cards{grid-template-columns:1fr 1fr}}
   @media(max-width:640px){.svc-cards{grid-template-columns:1fr}.svc-card{min-height:0}}
-  @media(prefers-reduced-motion:reduce){.svc-bg,.svc-bg img,.svc-card::after,.svc-more svg{transition:none!important}}
+  @media(prefers-reduced-motion:reduce){.svc-bg,.svc-bg img,.svc-bg::after,.svc-more svg{transition:none!important}}
 
   /* emergency — stays dark photographic band */
   .emergency{position:relative;overflow:hidden;background:var(--ink2)}
@@ -295,6 +295,8 @@
   .contact .cols>*{min-width:0}
   .nap{border-radius:2px;background:var(--ink);color:var(--w);padding:38px}
   .nap h3{font-size:26px;font-weight:600;color:#fff}
+  .nap-name .c1{color:#E2464C}
+  .nap-name .c2{color:#fff}
   .nap dl{margin-top:26px;display:flex;flex-direction:column;gap:20px}
   .nap dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--w-dim)}
   .nap dd{margin:5px 0 0;font-size:16.5px}
@@ -331,7 +333,11 @@
   footer.site ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
   footer.site a{color:var(--w-muted);text-decoration:none;transition:color .2s}
   footer.site a:hover{color:#fff}
+  .flogo-lockup{display:inline-block;line-height:1}
   .flogo-wm{font-size:30px}
+  .flogo-lockup small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:5px}
+  .flogo-lockup small .c1{color:#E2464C}
+  .flogo-lockup small .c2{color:#fff}
   .foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding:20px 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--w-dim);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
   @media(max-width:840px){footer.site .cols{grid-template-columns:1fr 1fr}}
 
@@ -617,7 +623,7 @@
     </div>
     <div class="cols">
       <aside class="nap" data-rv="left">
-        <h3>DenVick BV</h3>
+        <h3 class="nap-name"><span class="c1">D</span><span class="c2">en</span><span class="c1">V</span><span class="c2">ic</span><span class="c1">K</span> BV</h3>
         <dl>
           <div><dt>Adres</dt><dd>Klein Mechelen 18b/9<br>2880 Bornem, België</dd></div>
           <div><dt>Telefoon</dt><dd><a href="tel:+32484136748">+32 484 136 748</a></dd></div>
@@ -667,7 +673,10 @@
   <div class="wrap">
     <div class="cols" data-stagger="up">
       <div>
-        <span class="wm wm--light flogo-wm" role="img" aria-label="DenVick"><span class="r">D</span><span class="b">en</span><span class="r">V</span><span class="b">ic</span><span class="r">K</span></span>
+        <span class="flogo-lockup">
+          <span class="wm wm--light flogo-wm" role="img" aria-label="DenVick"><span class="r">D</span><span class="b">en</span><span class="r">V</span><span class="b">ic</span><span class="r">K</span></span>
+          <small><span class="c1">Structurele</span> <span class="c2">aannemingen</span></small>
+        </span>
         <p style="margin-top:14px;max-width:36ch">Uw specialist in structurele aannemingen. Expertise en onafhankelijke kwaliteitscontrole, in heel de Benelux.</p>
         <p style="margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--dim)">BTW BE 0xxx.xxx.xxx</p>
       </div>
