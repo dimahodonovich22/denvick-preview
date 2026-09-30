@@ -148,6 +148,8 @@
   .hero-bg{position:absolute;inset:0}
   .hero-bg img{position:absolute;top:-45px;left:var(--hero-shift);width:100%;height:calc(100% + 90px);transform:translateY(var(--py,0px));object-fit:cover;object-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
   @media(max-width:980px){.hero{--hero-shift:0%}.hero-bg img{object-position:70% center;-webkit-mask-image:none;mask-image:none}.hero-bg::after{background:linear-gradient(0deg,rgba(16,19,24,.94) 0%,rgba(16,19,24,.8) 55%,rgba(16,19,24,.6) 100%)}}
+  /* tablet: pull the frame right so the headline sits on the dark building, not the white truck */
+  @media(min-width:701px) and (max-width:980px){.hero-bg img{object-position:35% center}}
   .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#101318 0%,rgba(16,19,24,.92) 30%,rgba(16,19,24,.52) 58%,rgba(16,19,24,.2) 100%),linear-gradient(0deg,rgba(16,19,24,.65) 0%,rgba(16,19,24,0) 24%)}
   .hero .wrap{position:relative;z-index:1;width:100%;padding-top:96px;padding-bottom:72px}
   .hero .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:14px;letter-spacing:.2em}
