@@ -1,0 +1,31 @@
+# www.denvick.be on one.com (Apache): static Astro build plus send.php for the quote form.
+# Only directives that the old WordPress setup already relied on, so the host's AllowOverride accepts them.
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # One address for everyone: https://www.denvick.be (one.com already sends http to https).
+  RewriteCond %{HTTP_HOST} ^denvick\.be$ [NC]
+  RewriteRule ^ https://www.denvick.be%{REQUEST_URI} [R=301,L]
+
+  # Old WordPress addresses without a page of their own on the new site.
+  RewriteRule ^onze-activiteiten/?$ /diensten/ [R=301,L]
+  RewriteRule ^over-ons/?$ /waarom-denvick/ [R=301,L]
+  RewriteRule ^contact/?$ /#contact [R=301,NE,L]
+  RewriteRule ^grounting/?$ /grouting/ [R=301,L]
+  RewriteRule ^staal-technieken/?$ /straaltechnieken/ [R=301,L]
+  RewriteRule ^(gyproc|isolatiewerken)/?$ /diensten/ [R=301,L]
+  RewriteRule ^feed/?$ / [R=301,L]
+
+  # WordPress login and API are gone for good.
+  RewriteRule ^(wp-admin|wp-login\.php|xmlrpc\.php|wp-json)(/.*)?$ - [G,L]
+</IfModule>
+
+# Files in /_astro/ carry a content hash in their name and never change.
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
